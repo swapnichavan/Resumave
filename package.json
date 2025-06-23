@@ -15,7 +15,6 @@
     "@tailwindcss/vite": "^4.1.10",
     "axios": "^1.10.0",
     "change-case": "^5.4.4",
-    "express": "^5.1.0",
     "freekeys": "^0.0.4",
     "https": "^1.0.0",
     "node-fetch": "^3.3.2",

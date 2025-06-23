@@ -6,7 +6,7 @@ const initialState = {
   education: [],
   experience: [],
   projects: [],
-  skills: [],
+  skills: {},
   certificates: [],
   languages: [],
   saved: false,
@@ -20,10 +20,18 @@ const ResumeSlice = createSlice({
       console.log(state, action);
       const {tab, name, value, index} = action.payload;
       console.log(index, tab, name, value);
+      console.log("Current state[tab]:", state[tab]);
+      console.log("Current state[tab][index]:", state[tab]?.[index]);
+
       if (index != null) {
         state[tab][index][name] = value;
       } else {
-        state[tab][name] = value;
+        if (Array.isArray(state[tab])) {
+          console.error("Cannot set properties directly on arrays");
+          return;
+        } else {
+          state[tab][name] = value;
+        }
       }
       state.saved = false;
     },
