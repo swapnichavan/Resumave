@@ -34,12 +34,14 @@ function Preview() {
   const [instance, updateInstance] = usePDF({document});
   console.log(document, parentRef, instance, resumeData);
   console.log(instance.url);
-
   // useEffect(() => {
-  //   if (resumeData.saved) {
-  //     updateInstance(resumeData.saved);
-  //   }
-  // }, [resumeData.saved]);
+  //   updateInstance({document});
+  // }, [resumeData]);
+  useEffect(() => {
+    if (resumeData.saved) {
+      updateInstance(document);
+    }
+  }, [resumeData.saved]);
   return (
     <div
       ref={parentRef}

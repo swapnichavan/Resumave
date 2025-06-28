@@ -155,7 +155,7 @@ function Resume({data}) {
         {education?.length > 0 && <Education data={education} />}
         {experience?.length > 0 && <Experience data={experience} />}
         {projects?.length > 0 && <Projects data={projects} />}
-        {skills && <Skills data={skills.skills} />}
+        {skills.skills && <Skills data={skills.skills} />}
         {languages?.length > 0 && <Languages data={languages} />}
       </Page>
     </Document>
