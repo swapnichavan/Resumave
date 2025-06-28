@@ -1,5 +1,4 @@
-import {useSelector} from "react-redux";
-import {Links, Text, View} from "./Renderer";
+import {Link, Text, View, Document, Page} from "@react-pdf/renderer";
 import styles from "../Styles";
 import Section from "./Section";
 import formatDate from "../../../../utils/formatDate";
@@ -23,9 +22,9 @@ const Header = ({data}) => {
         {contactLinks
           .filter((obj) => obj.value)
           .map(({value, name}) => (
-            <Links key={name} src={value} style={{color: "#555"}}>
+            <Link key={name} src={value} style={{color: "#555"}}>
               {name}
-            </Links>
+            </Link>
           ))}
       </View>
     </Section>
@@ -64,9 +63,9 @@ const Projects = ({data}) => (
             <Text style={styles.title}>{title}</Text>
           </View>
           <View style={styles.subTitle_wrapper}>
-            <Links style={{textDecoration: "none", color: "#666"}} src={url}>
+            <Link style={{textDecoration: "none", color: "#666"}} src={url}>
               {url}
-            </Links>
+            </Link>
           </View>
           <View style={styles.lists}>
             {description?.split("\n")?.map((resp, i) => (
@@ -139,14 +138,14 @@ const Languages = ({data}) => {
   );
 };
 
-function Preview() {
-  const resumeData = useSelector((state) => state.resume);
-  console.log(resumeData);
+function Resume({data}) {
+  // const resumeData = useSelector((state) => state.resume);
+  console.log(data);
   const {contact, education, experience, skills, projects, summary, languages} =
-    resumeData;
+    data;
   return (
-    <div className="h-[40rem] w-[28rem] md:block">
-      <div style={styles.page}>
+    <Document>
+      <Page size="A4" style={styles.page}>
         <Header data={contact} />
         {summary?.summary && (
           <Section title={"summary"}>
@@ -156,11 +155,11 @@ function Preview() {
         {education?.length > 0 && <Education data={education} />}
         {experience?.length > 0 && <Experience data={experience} />}
         {projects?.length > 0 && <Projects data={projects} />}
-        {skills.skills && <Skills data={skills.skills} />}
+        {skills && <Skills data={skills.skills} />}
         {languages?.length > 0 && <Languages data={languages} />}
-      </div>
-    </div>
+      </Page>
+    </Document>
   );
 }
 
-export default Preview;
+export default Resume;

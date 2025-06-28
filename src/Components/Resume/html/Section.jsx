@@ -1,5 +1,5 @@
 import {Text, View} from "./Renderer";
-import styles from "./Styles";
+import styles from "../Styles";
 
 function Section({title, children}) {
   return (
